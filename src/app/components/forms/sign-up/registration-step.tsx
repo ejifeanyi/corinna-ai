@@ -4,10 +4,22 @@ import { useAuthContextHook } from "@/context/use-auth-context";
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import TypeSelectionForm from "./type-selection-form";
+import dynamic from "next/dynamic";
+import { Spinner } from "../../spinner";
+
+const DetailForm = dynamic(() => import("../account-details-form"), {
+	ssr: false,
+	loading: () => <Spinner />,
+});
+
+const OTPForm = dynamic(() => import("./otp-form"), {
+	ssr: false,
+	loading: () => <Spinner />,
+});
 
 type Props = {};
 
-const registrationFormStep = (props: Props) => {
+const RegistrationFormStep = (props: Props) => {
 	const {
 		register,
 		formState: { errors },
@@ -30,10 +42,22 @@ const registrationFormStep = (props: Props) => {
 				/>
 			);
 		case 2:
+			return (
+				<DetailForm
+					errors={errors}
+					register={register}
+				/>
+			);
 		case 3:
+			return (
+				<OTPForm
+					onOTP={onOTP}
+					setOTP={setOnOTP}
+				/>
+			);
 	}
 
-	return <div>registrationFormStep</div>;
+	return <div>RegistrationFormStep</div>;
 };
 
-export default registrationFormStep;
+export default RegistrationFormStep;

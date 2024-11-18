@@ -1,6 +1,8 @@
 import SignUpFormProvider from "@/app/components/forms/sign-up/form-provider";
 import React from "react";
 import RegistrationFormStep from "@/app/components/forms/sign-up/registration-step";
+import ButtonHandler from "@/app/components/forms/sign-up/button-handlers";
+import HighLightBar from "@/app/components/forms/sign-up/hightlight-bar";
 
 type Props = {};
 
@@ -12,9 +14,10 @@ const SignUp = (props: Props) => {
 					<div className="flex flex-col gap-3">
 						<div className="flex flex-col gap-3">
 							<RegistrationFormStep />
-							{/* <ButtonHandler /> */}
+							<ButtonHandler />
 						</div>{" "}
 					</div>
+					<HighLightBar />
 				</SignUpFormProvider>
 			</div>
 		</div>
